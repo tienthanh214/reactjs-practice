@@ -1,10 +1,10 @@
 import './App.scss'
-import DateComboBox from "./components/DateSearchBox"
+import SearchBar from './containers/SearchBar'
 
 function App() {
   return (
     <div className='App'>
-      <DateComboBox /> 
+      <SearchBar />
     </div>
   )
 }
