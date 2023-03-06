@@ -1,6 +1,6 @@
-import { AppBar, CssBaseline, Toolbar, Typography } from "@mui/material";
+import { AppBar, Toolbar } from "@mui/material";
 import { Box } from "@mui/system";
-import DateSearchBox from "../components/DateSearchBox";
+import DateSearchBox from "../components/DateSearchBox/DateSearchBox";
 
 export default function SearchBar() {
 	return (
@@ -12,7 +12,7 @@ export default function SearchBar() {
 					zIndex: 3,
 					borderRadius: "0 0 16px 16px",
 					display: "flex",
-					placeItems: "center"
+					placeItems: "center",
 				}}
 			>
 				<Toolbar>
