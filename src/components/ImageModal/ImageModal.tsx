@@ -1,9 +1,8 @@
-import { Backdrop, Fade, Modal, Typography } from "@mui/material";
-import { Box, display } from "@mui/system";
+import { Backdrop, Button, Divider, Fade, Modal, Typography } from "@mui/material";
+import { Box } from "@mui/system";
 import { useDispatch, useSelector } from "react-redux";
 import {
 	clearImageModalData,
-	setImageModalData,
 	setImageModalOpen,
 } from "../../actions/imageModalAction";
 import { RootState } from "../../reducers/store";
@@ -46,10 +45,11 @@ export default function ImageModal() {
 		>
 			<Fade in={open}>
 				<Box sx={style}>
-					<Typography variant="h6" component="h2" sx={{ pb: 2 }}>
+					<Typography variant="h6" component="h2" >
 						{id}
 					</Typography>
-					<Box src={src} style={{ margin: "0 auto" }} component="img" />
+					<Divider flexItem/>
+					<Box src={src} style={{ paddingTop: 8, margin: "0 auto" }} component="img" />
 					<Box sx={{ p: 2 }}>
 						<Typography>
 							<b>Date: </b> {date}
@@ -70,6 +70,10 @@ export default function ImageModal() {
 							<b>Location Type: </b> {location_type || "<none>"}
 						</Typography>
 					</Box>
+
+					<Divider flexItem/>
+
+					<Button onClick={handleClose}>Close</Button>
 				</Box>
 			</Fade>
 		</Modal>
@@ -81,7 +85,8 @@ const style = {
 	top: "50%",
 	left: "50%",
 	transform: "translate(-50%, -50%)",
-	width: 400,
+	maxWidth: 400,
+	width: '100%',
 	bgcolor: "white",
 	border: "2px solid #000",
 	boxShadow: 24,
