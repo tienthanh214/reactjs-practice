@@ -7,8 +7,9 @@ export default function Loading() {
     return visible ? <CircularProgress sx={style} /> : null
 }
 const style = {
-	position: "absolute" as "absolute",
+	position: "fixed",
 	top: "50%",
 	left: "50%",
 	transform: "translate(-50%, -50%)",
+	zIndex: 5,
 };
