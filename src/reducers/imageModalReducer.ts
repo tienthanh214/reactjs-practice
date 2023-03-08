@@ -3,13 +3,13 @@ import { AnyAction } from "@reduxjs/toolkit";
 const initialState = {
 	open: false,
   data: {
-    date: "none",
-    day_of_week: "none",
-    id: "none",
-    local_time: "none",
-    location_address: "none",
-    location_type: "none",
-    part_of_day: "none",
+    date: "",
+    day_of_week: "",
+    id: "",
+    local_time: "",
+    location_address: "",
+    location_type: "",
+    part_of_day: "",
     src: "",
   },
 };

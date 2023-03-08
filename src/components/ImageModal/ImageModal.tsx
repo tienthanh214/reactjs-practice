@@ -67,7 +67,7 @@ export default function ImageModal() {
 							<b>Location Address: </b> {location_address}
 						</Typography>
 						<Typography>
-							<b>Location Type: </b> {location_type}
+							<b>Location Type: </b> {location_type || "<none>"}
 						</Typography>
 					</Box>
 				</Box>
