@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { getDateList, getImageListByDate } from "../../data/metadataAPI";
 import { useDispatch } from "react-redux";
 import { setImageList } from "../../actions/imageListAction";
+import { setLoadingVisible } from "../../actions/loadingAction";
 
 export default function DateSearchBox() {
 	const [selectedDate, setSelectedDate] = useState<string | null>(null);
@@ -25,16 +26,20 @@ export default function DateSearchBox() {
 
 	const handleOnClickSearch = () => {
 		if (!selectedDate) return;
+		dispatch(setLoadingVisible(true));
 		getImageListByDate(selectedDate)
 			.then((res) => {
 				if (res.status !== 200) return;
 				dispatch(setImageList(res.data || []));
 			})
-			.catch(console.log);
+			.catch(console.log)
+			.finally(() => {
+				dispatch(setLoadingVisible(false));
+			});
 	};
 
 	const handleOnChangeDate = (e: any, newValue: string | null) => {
-		setSelectedDate(newValue);
+		if (newValue !== selectedDate) setSelectedDate(newValue);
 	};
 
 	return (

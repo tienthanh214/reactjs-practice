@@ -4,21 +4,26 @@ import {
 	setImageModalData,
 	setImageModalOpen,
 } from "../../actions/imageModalAction";
+import { setLoadingVisible } from "../../actions/loadingAction";
 import { getMetadataById } from "../../data/metadataAPI";
 
 export default function ImageCard(props: any) {
 	const { src, alt, title, width, height, shot_id, ...rest } = props;
 	const dispatch = useDispatch();
 	const handleOnClickImage = () => {
+		dispatch(setLoadingVisible(true));
 		getMetadataById(shot_id)
 			.then((res) => {
 				if (res.status !== 200) return;
 				console.log(res.data);
-				res.data.src = src
+				res.data.src = src;
 				dispatch(setImageModalData(res.data));
 				dispatch(setImageModalOpen(true));
 			})
-			.catch(console.log);
+			.catch(console.log)
+			.finally(() => {
+				dispatch(setLoadingVisible(false));
+			});
 	};
 
 	return (
