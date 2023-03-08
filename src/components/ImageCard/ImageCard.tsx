@@ -2,7 +2,6 @@ import { Card, ImageListItem, ImageListItemBar } from "@mui/material";
 
 export default function ImageCard(props: any) {
 	const { src, alt, title, width, height, ...rest } = props;
-  console.log(width, height)
 	return (
 		<Card key={title}>
 			<ImageListItem>

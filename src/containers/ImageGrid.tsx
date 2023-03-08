@@ -1,18 +1,20 @@
 import { Grid } from "@mui/material";
 import ImageCard from "../components/ImageCard/ImageCard";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../reducers/store";
 import { getImageSrc } from "../data/imageAPI";
 
 export default function ImageGrid() {
 	const NUM_IMAGE_PER_LOAD = 30
-	const [currentLength, setCurrentLength] = useState(10);
+	const NUM_INITIAL_VISIBLE_ITEMS = 30
+	const [currentLength, setCurrentLength] = useState(0);
 	const [hasMore, setHasMore] = useState(true);
 	const { imageList } = useSelector((state: RootState) => state.imageList);
 
 	const fetchData = () => {
+		console.log('Hello')	
 		if (currentLength >= imageList.length) {
 			setHasMore(false)
 			return
@@ -20,6 +22,15 @@ export default function ImageGrid() {
 		setCurrentLength((currentLength) => currentLength + NUM_IMAGE_PER_LOAD)
 		setHasMore(true)
 	};
+
+	useEffect(() => {
+		setCurrentLength(NUM_INITIAL_VISIBLE_ITEMS)
+		if (NUM_INITIAL_VISIBLE_ITEMS > imageList.length) {
+			setHasMore(false)
+			return
+		}
+		setHasMore(true)
+	}, [imageList])
 
 	return (
 		<div>
@@ -38,11 +49,11 @@ export default function ImageGrid() {
 				style={{ overflow: "hidden", height: "100%" }}
 			>
 				<Grid container spacing={2} justifyContent="center" sx={{ padding: 4 }}>
-					{imageList.map((imageId) => (
+					{imageList.slice(0, currentLength).map((imageId) => (
 						<Grid item key={imageId}>
 							<ImageCard
 								src={getImageSrc(imageId)}
-								width="200px"
+								width="256px"
 								height="180px"
 								title={imageId}
 							/>
