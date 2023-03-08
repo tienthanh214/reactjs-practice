@@ -15,7 +15,7 @@ export default function SearchBar() {
 			}}
 		>
 			<Toolbar>
-				<DateSearchBox listDate={[]} />
+				<DateSearchBox/>
 			</Toolbar>
 		</AppBar>
 	);

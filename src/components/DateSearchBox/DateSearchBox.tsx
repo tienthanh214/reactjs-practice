@@ -3,23 +3,39 @@ import Autocomplete from "@mui/material/Autocomplete";
 import styles from "./styles.module.scss";
 import { Button } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getDateList, getImageListByDate } from "../../data/metadataAPI";
+import { useDispatch } from "react-redux";
+import { setImageList } from "../../actions/imageListAction";
 
-type IProps = {
-	listDate : string[]
-}
+export default function DateSearchBox() {
+	const [selectedDate, setSelectedDate] = useState<string | null>(null);
+	const [listDate, setListDate] = useState<string[]>([]);
 
-export default function DateSearchBox({listDate} : IProps) {
-	const [selectedDate, setSelectedDate] = useState<string | null>(null)
-	listDate = ['2021-01-02', '2022-04-06']
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		getDateList()
+			.then((res) => {
+				if (res.status !== 200) return;
+				setListDate(res.data);
+			})
+			.catch(console.log);
+	}, []); // first render only
+
 	const handleOnClickSearch = () => {
-		if (!selectedDate) return
-		console.log("Call API get data by date", selectedDate)
-	}
+		if (!selectedDate) return;
+		getImageListByDate(selectedDate)
+			.then((res) => {
+				if (res.status !== 200) return;
+				dispatch(setImageList(res.data || []));
+			})
+			.catch(console.log);
+	};
 
-	const handleOnChangeDate = (e : any, newValue : string | null) => {
-		setSelectedDate(newValue)
-	}
+	const handleOnChangeDate = (e: any, newValue: string | null) => {
+		setSelectedDate(newValue);
+	};
 
 	return (
 		<div className={styles["search-box"]}>
