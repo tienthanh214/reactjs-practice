@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../reducers/store";
 import { getImageSrc } from "../data/imageAPI";
+import ImageModal from "../components/ImageModal/ImageModal";
 
 export default function ImageGrid() {
 	const NUM_IMAGE_PER_LOAD = 30
@@ -14,7 +15,6 @@ export default function ImageGrid() {
 	const { imageList } = useSelector((state: RootState) => state.imageList);
 
 	const fetchData = () => {
-		console.log('Hello')	
 		if (currentLength >= imageList.length) {
 			setHasMore(false)
 			return
@@ -56,6 +56,7 @@ export default function ImageGrid() {
 								width="256px"
 								height="180px"
 								title={imageId}
+								shot_id={imageId}
 							/>
 						</Grid>
 					))}
