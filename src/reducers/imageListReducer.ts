@@ -1,21 +1,24 @@
-import { PayloadAction } from "@reduxjs/toolkit";
+import { AnyAction } from "@reduxjs/toolkit";
 
-type ImageListState = {
-  imageList: string[];
-}
-
-const initialState : ImageListState = {
-  imageList: [],
+interface ImageListState {
+	imageList: string[];
 };
 
-export default function imageListReducer(state = initialState, action : PayloadAction<string[]>) {
+const initialState: ImageListState = {
+	imageList: [],
+};
+
+export default function imageListReducer(
+	state = initialState,
+	action: AnyAction
+) {
 	switch (action.type) {
-    case "SET_IMAGE_LIST":
-      return {
-        ...state,
-        imageList: action.payload,
-      }
-    default:
-      return state
+		case "SET_IMAGE_LIST":
+			return {
+				...state,
+				imageList: action.payload,
+			};
+		default:
+			return state;
 	}
 }

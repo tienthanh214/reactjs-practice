@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import imageListReducer from "./imageListReducer";
+import ImageModalReducer from "./imageModalReducer";
 
 export const store = configureStore({
 	reducer: {
-		imageList: imageListReducer
+		imageList: imageListReducer,
+		imageModal: ImageModalReducer,
 	},
 	middleware: [],
 });
