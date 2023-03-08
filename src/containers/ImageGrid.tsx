@@ -14,6 +14,7 @@ export default function ImageGrid() {
 	const [currentLength, setCurrentLength] = useState(0);
 	const [hasMore, setHasMore] = useState(true);
 	const { imageList } = useSelector((state: RootState) => state.imageList);
+	const isLoading = useSelector((state: RootState) => state.loading)
 
 	const fetchData = () => {
 		if (currentLength >= imageList.length) {
@@ -32,6 +33,10 @@ export default function ImageGrid() {
 		}
 		setHasMore(true)
 	}, [imageList])
+
+	useEffect(() => {
+		window.scrollTo(0, 0)
+	}, [isLoading])
 
 	return (
 		<div>
