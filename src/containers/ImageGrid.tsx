@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../reducers/store";
 import { getImageSrc } from "../data/imageAPI";
 import ImageModal from "../components/ImageModal/ImageModal";
+import Loading from "../components/Loading/Loading";
 
 export default function ImageGrid() {
 	const NUM_IMAGE_PER_LOAD = 30
@@ -64,6 +65,8 @@ export default function ImageGrid() {
 			</InfiniteScroll>
 			{/* show image on click */}
 			<ImageModal />
+			{/*  */}
+			<Loading />
 		</div>
 	);
 }

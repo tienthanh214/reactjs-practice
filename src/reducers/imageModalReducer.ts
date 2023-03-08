@@ -14,11 +14,10 @@ const initialState = {
   },
 };
 
-export default function ImageModalReducer(
+export default function imageModalReducer(
 	state = initialState,
 	action: AnyAction
 ) {
-  console.log(state, action)
 	switch (action.type) {
 		case "SET_IMAGE_MODAL_OPEN":
 			return {
