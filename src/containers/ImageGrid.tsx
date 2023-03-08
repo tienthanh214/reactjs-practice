@@ -49,7 +49,7 @@ export default function ImageGrid() {
 				style={{ overflow: "hidden", height: "100%" }}
 			>
 				<Grid container spacing={2} justifyContent="center" sx={{ padding: 4 }}>
-					{imageList.slice(0, currentLength).map((imageId) => (
+					{imageList.slice(0, currentLength).map((imageId : string) => (
 						<Grid item key={imageId}>
 							<ImageCard
 								src={getImageSrc(imageId)}
@@ -62,6 +62,8 @@ export default function ImageGrid() {
 					))}
 				</Grid>
 			</InfiniteScroll>
+			{/* show image on click */}
+			<ImageModal />
 		</div>
 	);
 }
