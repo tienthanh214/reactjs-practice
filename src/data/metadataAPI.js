@@ -8,3 +8,7 @@ export const getDateList = () => {
 export const getImageListByDate = (date) => {
     return makeRequest(`${METADATA_SERVER}/filter-by-date?date=${date}`)
 }
+
+export const getMetadataById = (id) => {
+    return makeRequest(`${METADATA_SERVER}/get-metadata-by-id?id=${id}`)
+}
