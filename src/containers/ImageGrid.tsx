@@ -26,6 +26,7 @@ export default function ImageGrid() {
 	};
 
 	useEffect(() => {
+		window.scrollTo(0, 0)
 		setCurrentLength(NUM_INITIAL_VISIBLE_ITEMS)
 		if (NUM_INITIAL_VISIBLE_ITEMS > imageList.length) {
 			setHasMore(false)
@@ -33,10 +34,6 @@ export default function ImageGrid() {
 		}
 		setHasMore(true)
 	}, [imageList])
-
-	useEffect(() => {
-		window.scrollTo(0, 0)
-	}, [isLoading])
 
 	return (
 		<div>
