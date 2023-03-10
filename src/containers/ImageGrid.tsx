@@ -10,11 +10,10 @@ import Loading from "../components/Loading/Loading";
 
 export default function ImageGrid() {
 	const NUM_IMAGE_PER_LOAD = 30
-	const NUM_INITIAL_VISIBLE_ITEMS = 30
+	const NUM_INITIAL_VISIBLE_ITEMS = 60
 	const [currentLength, setCurrentLength] = useState(0);
 	const [hasMore, setHasMore] = useState(true);
 	const { imageList } = useSelector((state: RootState) => state.imageList);
-	const isLoading = useSelector((state: RootState) => state.loading)
 
 	const fetchData = () => {
 		if (currentLength >= imageList.length) {
